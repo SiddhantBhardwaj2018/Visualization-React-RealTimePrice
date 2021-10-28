@@ -1,3 +1,11 @@
+body {
+ /* background-color: #232323; */
+  color: white;
+}
+.title {
+  color: #f7931a;
+  font-size: 40px;
+}
 .App {
   text-align: center;
 }
