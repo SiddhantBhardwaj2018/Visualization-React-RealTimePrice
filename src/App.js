@@ -6,10 +6,11 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import Graph from "./Graph";
 import DailyGraph from "./DailyGraph";
 import Totals from "./Totals";
+import RandomPrice from './RandomPrice';
 dayjs.extend(advancedFormat);
 
 const APIURL = "https://api.coingecko.com/api/v3/";
-
+/*
 function App() {
  
   const startDate = "10/1/2021";
@@ -101,6 +102,14 @@ function App() {
       {content}
     </div>
   );
+}
+*/
+const App = () => {
+  return (
+    <div className = "App">
+      <RandomPrice min={0} max = {50} />
+    </div>
+  )
 }
 
 export default App;
