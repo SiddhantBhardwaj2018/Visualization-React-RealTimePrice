@@ -21,7 +21,7 @@ export default function RandomPrice({ min, max }){
  }   
  
     useEffect(() => {
-        if(currentTime - startTime > 10000){
+        if(currentTime - startTime > 180000){
             clearInterval(intervalId)
             setTimeout(() => alert("You did not even try "),2000)
         }
@@ -29,14 +29,20 @@ export default function RandomPrice({ min, max }){
 
     useEffect(() => {
         if(sellOrder){
+            if(!mode){
             clearInterval(intervalId)
-            const max_value = Math.max.apply(Math, prices.map(function(o) { return o.y; }))
-            const lastPrice = prices.at(-1)
-            console.log(lastPrice.Price)
+            const max_value = Math.max.apply(Math, prices.map(function(o) { return o.Price; }))
+            let lastPrice = prices.at(-1)
+            lastPrice = lastPrice.Price
             if(lastPrice >= max_value){
-                alert("You have won the game !! Hurrah")
+                alert(`You have won the game !! Hurrah !! The max price is ${max_value} and your selected price was ${lastPrice}`)
+                setPrices([])
             }else{
-                alert("BooHoo !! You lost the game !!")
+                alert(`BooHoo !! You lost the game !! The max price is ${max_value} and your selected price was ${lastPrice}`)
+                setPrices([])
+            }
+            }else{
+                alert("Please start the game before hitting the start button")
             }
         }
     },[sellOrder])
@@ -72,7 +78,7 @@ export default function RandomPrice({ min, max }){
 
 const styles = {
     container: {
-      maxWidth: 700,
+      maxWidth: 1000,
       margin: "0 auto",
     },
   };
